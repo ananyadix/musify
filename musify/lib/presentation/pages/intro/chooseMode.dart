@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:musify/common/widgets/app_button.dart';
 import 'package:musify/core/configs/theme/app_color.dart';
+import 'package:musify/presentation/bloc/themeCubit.dart';
+import 'package:musify/presentation/pages/login&register/login.dart';
 
 class Choosemode extends StatelessWidget {
   const Choosemode({super.key});
@@ -39,16 +42,21 @@ class Choosemode extends StatelessWidget {
                   children: [
                     Column(
                       children: [
-                        ClipOval(
-                          child: Container(
-                            height: 35,
-                            width: 35,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(
-                              "assets/images/moon.png",
-                              fit: BoxFit.cover, // Ensure proper scaling
+                        GestureDetector(
+                          onTap: (){
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.dark);
+                          },
+                          child: ClipOval(
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset(
+                                "assets/images/moon.png",
+                                fit: BoxFit.cover, // Ensure proper scaling
+                              ),
                             ),
                           ),
                         ),
@@ -58,7 +66,7 @@ class Choosemode extends StatelessWidget {
                           style: TextStyle(
                             fontSize: 17,
                             fontWeight: FontWeight.w500,
-                            color: Colors.grey,
+                            color:Colors.grey,
                           ),
                         ),
                       ],
@@ -66,16 +74,21 @@ class Choosemode extends StatelessWidget {
                     const SizedBox(width: 40),
                     Column(
                       children: [
-                        ClipOval(
-                          child: Container(
-                            height: 35,
-                            width: 35,
-                            decoration: const BoxDecoration(
-                              shape: BoxShape.circle,
-                            ),
-                            child: Image.asset(
-                              "assets/images/sun.png",
-                              fit: BoxFit.cover, // Ensure proper scaling
+                        GestureDetector(
+                          onTap: (){
+                            context.read<ThemeCubit>().updateTheme(ThemeMode.light);
+                          },
+                          child: ClipOval(
+                            child: Container(
+                              height: 35,
+                              width: 35,
+                              decoration: const BoxDecoration(
+                                shape: BoxShape.circle,
+                              ),
+                              child: Image.asset(
+                                "assets/images/sun.png",
+                                fit: BoxFit.cover, // Ensure proper scaling
+                              ),
                             ),
                           ),
                         ),
@@ -98,7 +111,7 @@ class Choosemode extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (BuildContext context) => const Choosemode(),
+                        builder: (BuildContext context) => const Login(),
                       ),
                     );
                   },
