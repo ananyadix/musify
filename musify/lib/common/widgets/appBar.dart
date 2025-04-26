@@ -3,16 +3,20 @@ import 'package:musify/common/helper/isDarkMode.dart';
 
 class Appbar extends StatelessWidget implements PreferredSizeWidget{
   final Widget? title;
-  const Appbar({this.title,super.key});
+  final Widget? action;
+  final Color? back;
+  final bool hideBack;
+  const Appbar({this.title,this.back,this.hideBack=false,this.action,super.key});
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      backgroundColor: Colors.transparent,
+      backgroundColor:back?? Colors.transparent,
       title:title??const Text('') ,
+      actions: [action ?? Container()],
       centerTitle: true,
       elevation: 0,
-      leading: IconButton(onPressed: (){Navigator.pop(context);}, icon: Container(
+      leading:hideBack? null: IconButton(onPressed: (){Navigator.pop(context);}, icon: Container(
         height: 50,
         width: 50,
         decoration: BoxDecoration(
